@@ -4,7 +4,7 @@ import Product from "./model/product_scehma.js"
 const Defaultdata = async () => {
     try {
       // Delete all existing data in the Product collection
-      await Product.deleteMany({});
+    //   await Product.deleteMany({});
       
       // Insert new data
       await Product.insertMany(products);

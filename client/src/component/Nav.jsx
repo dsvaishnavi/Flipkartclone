@@ -1,12 +1,23 @@
-import LoginDropdown from "./LoginDropdown";
-import React from "react";
+import React, { useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
+import LoginDropdown from "./LoginDropdown";
+import { LoginDialog } from "./login/LoginDialog";
 
 export const Nav = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+
   return (
     <>
-      <nav className="bg-blue-300 px-4 py-2 flex items-center justify-between flex-wrap ">
+      <nav className="bg-blue-300 px-4 py-2 flex items-center justify-between flex-wrap">
         {/* Logo Section */}
         <div className="flex items-center space-x-2">
           <img
@@ -17,7 +28,7 @@ export const Nav = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="flex-grow mx-4 my-2 md:my-0 flex flex-row items-center ">
+        <div className="flex-grow mx-4 my-2 md:my-0 flex flex-row items-center">
           <input
             type="text"
             placeholder="Search for products, brands, and more"
@@ -28,7 +39,7 @@ export const Nav = () => {
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-4 sm:space-x-8 md:space-x-16">
-          <LoginDropdown />
+          <LoginDropdown openDialog={openDialog} />
 
           <a
             href="#"
@@ -38,7 +49,7 @@ export const Nav = () => {
           </a>
           <a
             href="#"
-            className="text-black text-xl font-medium hidden sm:block "
+            className="text-black text-xl font-medium hidden sm:block"
           >
             More
           </a>
@@ -54,6 +65,11 @@ export const Nav = () => {
           </div>
         </div>
       </nav>
+{/* -------------------------------------Dialog box for login----------------------------------------------------- */}
+     
+      <LoginDialog closeDialog={closeDialog} isDialogOpen={isDialogOpen} />
     </>
   );
 };
+
+
