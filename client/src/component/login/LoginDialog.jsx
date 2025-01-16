@@ -14,8 +14,17 @@ const logininitialvalue = {
   },
 };
 
+ const initialValue={
+  firstname:"",
+  email:"",
+  username:"",
+  mobile:"",
+  password:""
+ }
+
 export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
   const [account, setAccount] = useState(logininitialvalue.login);
+  const [signup,setsignup]= useState(initialValue)
   
 
   const handlesignup = () => {
@@ -26,6 +35,10 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
     setAccount(logininitialvalue.login);
   };
   
+  const onInputchange=(e)=>{
+    setsignup({...signup , [e.target.type]: e.target.value});
+    console.log(signup)
+  }
 
   return (
     <>
@@ -92,27 +105,29 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   </p>
                 </div>
               </div>
-            ) : (
+            ) : 
+            (
               <div className="w-3/5 p-6">
                 <form className="flex flex-col gap-5">
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-gray-700 font-medium"
+                      className="block text-gray-700 font-medium" onChange={()=>onInputchange(e)}
                     >
                       Name
                     </label>
                     <input
+                    
                       type="text"
                       id="name"
                       placeholder="Enter your name"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={()=>onInputchange(e)}
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-gray-700 font-medium"
+                      className="block text-gray-700 font-medium" 
                     >
                       Email
                     </label>
@@ -120,7 +135,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="email"
                       id="email"
                       placeholder="Enter your email"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={()=>onInputchange(e)}
                     />
                   </div>
                   <div>
@@ -134,7 +149,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="username"
                       id="username"
                       placeholder="Enter your username"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={()=>onInputchange(e)}
                     />
                   </div>
                   <div>
@@ -148,7 +163,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="tel"
                       id="mobile"
                       placeholder="Enter your mobile number"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={()=>onInputchange(e)}
                     />
                   </div>
                   <div>
@@ -162,7 +177,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="password"
                       id="password"
                       placeholder="Enter your password"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={()=>onInputchange(e)}
                     />
                   </div>
                   <button
