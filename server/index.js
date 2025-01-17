@@ -2,10 +2,14 @@ import express from "express";
 import Connection from "./databases/db.js";
 import dotenv from "dotenv";
 import Defaultdata from "./default.js";
+import Router from "./routes/routes.js";
 
 const app = express();
 
 dotenv.config();
+
+app.use('/',Router)
+
 const port = 3000;
 
 const USERNAME = process.env.DB_USERNAME;
