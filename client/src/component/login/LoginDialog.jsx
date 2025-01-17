@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { authenticateSignup } from "../../service/api";
 
 const logininitialvalue = {
   login: {
@@ -21,6 +22,11 @@ const initialValue = {
   mobile: "",
   password: "",
 };
+
+const signupUser=async()=>{
+   let response=await authenticateSignup(signup);
+}
+
 
 export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
   const [account, setAccount] = useState(logininitialvalue.login);
@@ -111,14 +117,14 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                     <label
                       htmlFor="name"
                       className="block text-gray-700 font-medium"
-                      onChange={(e) => onInputchange(e)}
+                     
                     >
-                      Name
+                      Fullname
                     </label>
                     <input
                       type="firstname"
                       id="name"
-                      placeholder="Enter your name"
+                      placeholder="Enter your fullname"
                       className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" name="firstname"
                       onChange={(e) => onInputchange(e)}
                     />
@@ -185,7 +191,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-orange-500 text-white py-2  rounded-lg font-medium hover:bg-orange-600"
+                    className="w-full bg-orange-500 text-white py-2  rounded-lg font-medium hover:bg-orange-600" onClick={()=>signupUser()}
                   >
                     Sign Up
                   </button>
