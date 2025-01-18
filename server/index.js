@@ -3,12 +3,17 @@ import Connection from "./databases/db.js";
 import dotenv from "dotenv";
 import Defaultdata from "./default.js";
 import Router from "./routes/routes.js";
+import cors from "cors";
+import bodyParser from "body-parser";
 
 const app = express();
 
 dotenv.config();
 
-app.use('/',Router)
+app.use(cors());
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/", Router);
 
 const port = 3000;
 
