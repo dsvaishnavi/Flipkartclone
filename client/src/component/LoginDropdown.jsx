@@ -11,14 +11,10 @@ export const LoginDropdown = ({ openDialog }) => {
   return (
     <div className="relative group inline-block text-left">
       {/* Dropdown Button */}
-      <button
-        className="flex items-center text-black bg-yellow-400 px-4 py-2 rounded-md text-sm font-medium space-x-2"
-      >
-        <FaUserLarge className="text-black text-lg"  />
-       
-       
+      <button className="flex items-center text-black bg-yellow-400 px-4 py-2 rounded-md text-sm font-medium space-x-2">
+        <FaUserLarge className="text-black text-lg" />
       </button>
-
+      {}
       {/* Login Button */}
       <button
         onClick={openLoginPage}

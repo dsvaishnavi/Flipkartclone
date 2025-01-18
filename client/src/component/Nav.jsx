@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import LoginDropdown from "./LoginDropdown";
@@ -65,11 +65,9 @@ export const Nav = () => {
           </div>
         </div>
       </nav>
-{/* -------------------------------------Dialog box for login----------------------------------------------------- */}
-     
+      {/* -------------------------------------Dialog box for login----------------------------------------------------- */}
+
       <LoginDialog closeDialog={closeDialog} isDialogOpen={isDialogOpen} />
     </>
   );
 };
-
-

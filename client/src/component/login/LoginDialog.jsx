@@ -23,10 +23,12 @@ const initialValue = {
   password: "",
 };
 
-const signupUser=async()=>{
-   let response=await authenticateSignup(signup);
-}
-
+const signupUser = async () => {
+  let response = await authenticateSignup(signup);
+  console.log(response);
+  if (!response) return;
+  closeDialog();
+};
 
 export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
   const [account, setAccount] = useState(logininitialvalue.login);
@@ -50,7 +52,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
       {/* Dialog */}
       {isDialogOpen && (
         <div className="fixed inset-0 z-50  bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow-lg w-[50rem] h-3/4 flex">
+          <div className="bg-white rounded-lg shadow-lg w-[50rem] h-max flex">
             {/* Left Section */}
 
             <div className="w-2/5 bg-blue-500 text-white p-6 rounded-l-lg flex flex-col justify-between">
@@ -117,7 +119,6 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                     <label
                       htmlFor="name"
                       className="block text-gray-700 font-medium"
-                     
                     >
                       Fullname
                     </label>
@@ -125,7 +126,8 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="firstname"
                       id="name"
                       placeholder="Enter your fullname"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" name="firstname"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      name="firstname"
                       onChange={(e) => onInputchange(e)}
                     />
                   </div>
@@ -140,7 +142,8 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="email"
                       id="email"
                       placeholder="Enter your email"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" name="email"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      name="email"
                       onChange={(e) => onInputchange(e)}
                     />
                   </div>
@@ -155,7 +158,8 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="username"
                       id="username"
                       placeholder="Enter your username"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" name="username"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      name="username"
                       onChange={(e) => onInputchange(e)}
                     />
                   </div>
@@ -170,7 +174,8 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="password"
                       id="password"
                       placeholder="Enter your password"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" name="password"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      name="password"
                       onChange={(e) => onInputchange(e)}
                     />
                   </div>
@@ -185,13 +190,15 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       type="mobile"
                       id="mobile"
                       placeholder="Enter your mobile number"
-                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" name="mobile"
+                      className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      name="mobile"
                       onChange={(e) => onInputchange(e)}
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-orange-500 text-white py-2  rounded-lg font-medium hover:bg-orange-600" onClick={()=>signupUser()}
+                    className="w-full bg-orange-500 text-white py-2  rounded-lg font-medium hover:bg-orange-600"
+                    onClick={() => signupUser()}
                   >
                     Sign Up
                   </button>
