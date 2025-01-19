@@ -1,4 +1,5 @@
 import { navData } from "../constant/data";
+
 export const Navbar2 = () => {
   return (
     <>

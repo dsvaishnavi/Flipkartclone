@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { authenticateSignup } from "../../service/api";
+import { DataContext } from "../context/DataProvider";
 
 const logininitialvalue = {
   login: {
@@ -23,16 +24,10 @@ const initialValue = {
   password: "",
 };
 
-const signupUser = async () => {
-  let response = await authenticateSignup(signup);
-  console.log(response);
-  if (!response) return;
-  closeDialog();
-};
-
 export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
   const [account, setAccount] = useState(logininitialvalue.login);
   const [signup, setsignup] = useState(initialValue);
+  const [acc, setAcc] = useContext(DataContext);
 
   const handlesignup = () => {
     setAccount(logininitialvalue.signup);
@@ -47,6 +42,13 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
     console.log(signup);
   };
 
+  const signupUser = async () => {
+    let response = await authenticateSignup(signup);
+    console.log(response);
+    if (!response) return;
+    closeDialog();
+    setAcc(signup.firstname);
+  };
   return (
     <>
       {/* Dialog */}

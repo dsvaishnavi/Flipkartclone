@@ -3,9 +3,11 @@ import { FaCartShopping } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import LoginDropdown from "./LoginDropdown";
 import { LoginDialog } from "./login/LoginDialog";
+import { DataContext } from "./context/DataProvider";
 
 export const Nav = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { acc } = useContext(DataContext);
 
   const openDialog = () => {
     setIsDialogOpen(true);
@@ -14,7 +16,10 @@ export const Nav = () => {
   const closeDialog = () => {
     setIsDialogOpen(false);
   };
-
+  const openLoginPage = () => {
+    console.log("Login button clicked");
+    openDialog();
+  };
   return (
     <>
       <nav className="bg-blue-300 px-4 py-2 flex items-center justify-between flex-wrap">
@@ -39,6 +44,24 @@ export const Nav = () => {
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-4 sm:space-x-8 md:space-x-16">
+          {acc ? (
+            <h1>{acc}</h1>
+          ) : (
+            <>
+              <span
+                onClick={openLoginPage}
+                className="absolute top-4 flex items-center text-black w-30 bg-yellow-400 px-1 py-1  rounded-md text-xl font-medium"
+              >
+                Login
+              </span>
+            </>
+          )}
+          {/* <button
+            onClick={openLoginPage}
+            className="absolute top-4 flex items-center text-black w-30 bg-yellow-400 px-1 py-1  rounded-md text-xl font-medium"
+          >
+            Login
+          </button> */}
           <LoginDropdown openDialog={openDialog} />
 
           <a

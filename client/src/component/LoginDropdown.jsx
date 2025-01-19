@@ -2,12 +2,6 @@ import React from "react";
 import { FaUserLarge } from "react-icons/fa6";
 
 export const LoginDropdown = ({ openDialog }) => {
-  const openLoginPage = () => {
-    // Logic for opening the login page or dialog
-    console.log("Login button clicked");
-    openDialog();
-  };
-
   return (
     <div className="relative group inline-block text-left">
       {/* Dropdown Button */}
@@ -15,13 +9,6 @@ export const LoginDropdown = ({ openDialog }) => {
         <FaUserLarge className="text-black text-lg" />
       </button>
       {}
-      {/* Login Button */}
-      <button
-        onClick={openLoginPage}
-        className="absolute top-0 right-[60px] text-black text-xl font-medium"
-      >
-        Login
-      </button>
 
       {/* Dropdown Content */}
       <div className="absolute right-0 hidden group-hover:block mt-2 w-48 bg-white shadow-lg rounded-md border border-gray-200 z-10">
