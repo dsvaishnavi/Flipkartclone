@@ -27,9 +27,10 @@ const initialValue = {
 export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
   const [account, setAccount] = useState(logininitialvalue.login);
   const [signup, setsignup] = useState(initialValue);
-  const [acc, setAcc] = useContext(DataContext);
+  const { setAcc } = useContext(DataContext);
 
   const handlesignup = () => {
+    
     setAccount(logininitialvalue.signup);
   };
 
