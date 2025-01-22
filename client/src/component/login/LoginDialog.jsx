@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import { authenticateSignup } from "../../service/api";
 import { DataContext } from "../context/DataProvider";
+import axios from "axios";
 
 const logininitialvalue = {
   login: {
@@ -30,7 +31,6 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
   const { setAcc } = useContext(DataContext);
 
   const handlesignup = () => {
-    
     setAccount(logininitialvalue.signup);
   };
 
@@ -43,13 +43,28 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
     console.log(signup);
   };
 
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:5000/signup", signup);
+  }
+
   const signupUser = async () => {
-    let response = await authenticateSignup(signup);
-    console.log(response);
-    if (!response) return;
-    closeDialog();
-    setAcc(signup.firstname);
+    const response = await authenticateSignup(signup); // Call your API
+    if (response && response.status === 201) {
+      console.log("Signup successful", response.data);
+      // Access products from the response
+      const products = response.data.products;
+      console.log("Products fetched after signup:", products);
+      closeDialog();
+      setAcc(signup.firstname); // Update user context
+    } else {
+      console.error(
+        "Signup failed:",
+        response?.data?.message || "Unknown error"
+      );
+    }
   };
+
   return (
     <>
       {/* Dialog */}
@@ -116,8 +131,9 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                 </div>
               </div>
             ) : (
+              
               <div className="w-3/5 p-6">
-                <form className="flex flex-col gap-5">
+                <form className="flex flex-col gap-5" onSubmit={handlesubmit}>
                   <div>
                     <label
                       htmlFor="name"
@@ -224,6 +240,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   </span>
                 </form>
               </div>
+              
             )}
           </div>
         </div>

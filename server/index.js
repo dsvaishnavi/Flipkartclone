@@ -5,6 +5,7 @@ import Defaultdata from "./default.js";
 import Router from "./routes/routes.js";
 import cors from "cors";
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", Router); //routing
+
 
 const port = 3000;
 

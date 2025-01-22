@@ -1,18 +1,23 @@
-import User from "../model/user_schema.js";
+import User from "../model/usermodel.js";
 
-export const usersignup = async (req, res) => {
+export const signupUser = async (req, res) => {
+  const { firstname, email, username, mobile, password } = req.body;
+
   try {
-    const exist = await User.findOne({ username: req.body.username });
-    if (exist) {
-      return res.status(401).json({ message: "username already exist" });
+    // Check if the user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
     }
 
-    const user = req.body;
-    const newuser = new User(user);
-    await newuser.save();
+    // Create and save the new user
+    const newUser = new User({ firstname, email, username, mobile, password });
+    await newUser.save();
 
-    res.status(200).json({ message: user });
+    res.status(201).json({ message: "Signup successful", user: newUser });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res
+      .status(500)
+      .json({ message: "Error during signup", error: error.message });
   }
 };
