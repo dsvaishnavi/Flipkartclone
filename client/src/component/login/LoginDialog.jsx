@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import { authenticateSignup } from "../../service/api";
 import { DataContext } from "../context/DataProvider";
-import axios from "axios";
+
 
 const logininitialvalue = {
   login: {
@@ -18,7 +18,7 @@ const logininitialvalue = {
 };
 
 const initialValue = {
-  firstname: "",
+  fullname: "",
   email: "",
   username: "",
   mobile: "",
@@ -43,27 +43,28 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
     console.log(signup);
   };
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/signup", signup);
-  }
-
-  const signupUser = async () => {
-    const response = await authenticateSignup(signup); // Call your API
+  
+    // Basic validation
+    if (!signup.firstname || !signup.email || !signup.username || !signup.mobile || !signup.password) {
+      console.error("All fields are required");
+      return;
+    }
+  
+    const response = await authenticateSignup(signup);
     if (response && response.status === 201) {
       console.log("Signup successful", response.data);
-      // Access products from the response
-      const products = response.data.products;
-      console.log("Products fetched after signup:", products);
       closeDialog();
-      setAcc(signup.firstname); // Update user context
+      setAcc(signup.firstname);
     } else {
-      console.error(
-        "Signup failed:",
-        response?.data?.message || "Unknown error"
-      );
+      console.error("Signup failed:", response?.data?.message || "Unknown error");
     }
   };
+  
+  
+  
+
 
   return (
     <>
@@ -142,7 +143,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                       Fullname
                     </label>
                     <input
-                      type="firstname"
+                      type="fullname"
                       id="name"
                       placeholder="Enter your fullname"
                       className="w-full px-4 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -217,7 +218,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   <button
                     type="submit"
                     className="w-full bg-orange-500 text-white py-2  rounded-lg font-medium hover:bg-orange-600"
-                    onClick={() => signupUser()}
+                    
                   >
                     Sign Up
                   </button>
