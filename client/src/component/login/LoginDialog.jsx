@@ -3,7 +3,6 @@ import { useState, useContext } from "react";
 import { authenticateSignup } from "../../service/api";
 import { DataContext } from "../context/DataProvider";
 
-
 const logininitialvalue = {
   login: {
     view: "login",
@@ -45,26 +44,31 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
-  
+
     // Basic validation
-    if (!signup.firstname || !signup.email || !signup.username || !signup.mobile || !signup.password) {
+    if (
+      !signup.firstname ||
+      !signup.email ||
+      !signup.username ||
+      !signup.mobile ||
+      !signup.password
+    ) {
       console.error("All fields are required");
       return;
     }
-  
+
     const response = await authenticateSignup(signup);
     if (response && response.status === 201) {
       console.log("Signup successful", response.data);
       closeDialog();
       setAcc(signup.firstname);
     } else {
-      console.error("Signup failed:", response?.data?.message || "Unknown error");
+      console.error(
+        "Signup failed:",
+        response?.data?.message || "Unknown error"
+      );
     }
   };
-  
-  
-  
-
 
   return (
     <>
@@ -113,7 +117,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   </button>
                   <span
                     onClick={closeDialog}
-                    className="cursor-pointer text-gray-500 ml-48 "
+                    className="cursor-pointer text-gray-500 ml-48 text-sm"
                   >
                     close
                   </span>
@@ -132,7 +136,6 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                 </div>
               </div>
             ) : (
-              
               <div className="w-3/5 p-6">
                 <form className="flex flex-col gap-5" onSubmit={handlesubmit}>
                   <div>
@@ -218,7 +221,6 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   <button
                     type="submit"
                     className="w-full bg-orange-500 text-white py-2  rounded-lg font-medium hover:bg-orange-600"
-                    
                   >
                     Sign Up
                   </button>
@@ -241,7 +243,6 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   </span>
                 </form>
               </div>
-              
             )}
           </div>
         </div>
