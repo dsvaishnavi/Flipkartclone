@@ -12,7 +12,7 @@ const logininitialvalue = {
   signup: {
     view: "sign up",
     heading: "Looks like you're new here!",
-    subheading: "Sign up with your mobile number to get started",
+    subheading: "Sign up with your details to get started",
   },
 };
 
@@ -79,8 +79,8 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
             {/* Left Section */}
 
             <div className="w-2/5 bg-blue-500 text-white p-6 rounded-l-lg flex flex-col justify-between">
-              <h2 className="text-2xl font-semibold mb-4">{account.heading}</h2>
-              <p className="text-lg mb-36">{account.subheading}</p>
+              <h2 className="text-3xl font-semibold mb-4">{account.heading}</h2>
+              <p className="text-lg mb-40">{account.subheading}</p>
               <div className="flex justify-center mb-4 ">
                 <img
                   src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png"
