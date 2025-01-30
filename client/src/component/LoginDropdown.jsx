@@ -25,7 +25,7 @@ export const LoginDropdown = ({ openDialog }) => {
         <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md border border-gray-200 z-10">
           <div className="py-2">
             {/* Sign In */}
-            <div className="px-4 py-2 text-sm text-gray-700 flex justify-between items-center">
+            <div className="px-4 py-2 text-xm text-gray-700 flex justify-between items-center">
               <span>New User?</span>
               <button
                 onClick={() => {
