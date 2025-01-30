@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaUserLarge } from "react-icons/fa6";
+import { User, LogOut, Heart, ShoppingBag, Settings } from "lucide-react";
 
 export const LoginDropdown = ({ openDialog }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,56 +13,50 @@ export const LoginDropdown = ({ openDialog }) => {
       {/* Dropdown Button */}
       <button
         onClick={toggleDropdown}
-        className="flex items-center text-black bg-yellow-400 px-4 py-2 rounded-md text-sm font-medium space-x-2"
+        className="flex items-center bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium space-x-2 
+                 border border-yellow-500 hover:bg-yellow-500 transition"
       >
-        <FaUserLarge className="text-black text-lg" />
+        <User className="text-black" size={20} />
+        <span>Login</span>
       </button>
 
       {/* Dropdown Content */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md border border-gray-200 z-10">
           <div className="py-2">
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              New User?
+            {/* Sign In */}
+            <div className="px-4 py-2 text-sm text-gray-700 flex justify-between items-center">
+              <span>New User?</span>
               <button
-                onClick={openDialog}
-                className="text-blue-800 ml-12 font-bold text-xs"
+                onClick={() => {
+                  setIsOpen(false);
+                  openDialog();
+                }}
+                className="text-blue-600 font-bold text-xm hover:underline"
               >
                 Sign In
               </button>
-            </a>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
+            </div>
+
+            {/* Menu Items */}
+            <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <Settings size={16} className="mr-2" />
               My Account
-            </a>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
+            </button>
+            <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <ShoppingBag size={16} className="mr-2" />
               Orders
-            </a>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
+            </button>
+            <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <Heart size={16} className="mr-2" />
               Wishlist
-            </a>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
+            </button>
+
+            {/* Sign Out */}
+            <button className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 border-t">
+              <LogOut size={16} className="mr-2" />
               Sign Out
-            </a>
+            </button>
           </div>
         </div>
       )}

@@ -45,25 +45,15 @@ export const Nav = () => {
         {/* Navigation Links */}
         <div className="flex items-center space-x-4 sm:space-x-8 md:space-x-16">
           {acc ? (
-            <h1>{acc}</h1>
+            <h1 className="text-lg font-semibold text-white px-4 py-2 bg-blue-600 rounded-lg shadow-md">
+              {acc}
+            </h1>
           ) : (
             <>
-              <span
-                onClick={openLoginPage}
-                className="absolute top-4 flex items-center text-black w-30 bg-yellow-400 px-1 py-1  rounded-md text-xl font-medium"
-              >
-                Login
-              </span>
+              
+              <LoginDropdown openDialog={openDialog} />
             </>
           )}
-          {/* <button
-            onClick={openLoginPage}
-            className="absolute top-4 flex items-center text-black w-30 bg-yellow-400 px-1 py-1  rounded-md text-xl font-medium"
-          >
-            Login
-          </button> */}
-          <LoginDropdown openDialog={openDialog} />
-
           <a
             href="#"
             className="text-black text-xl font-medium hidden sm:block"

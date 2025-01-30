@@ -16,7 +16,6 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", Router); //routing
 
-
 const port = 3000;
 
 const USERNAME = process.env.DB_USERNAME;

@@ -219,6 +219,7 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                     />
                   </div>
                   <button
+                    onClick={handlesubmit}
                     type="submit"
                     className="w-full bg-orange-500 text-white py-2  rounded-lg font-medium hover:bg-orange-600"
                   >
