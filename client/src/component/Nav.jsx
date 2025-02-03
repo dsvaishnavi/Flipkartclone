@@ -4,6 +4,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import LoginDropdown from "./LoginDropdown";
 import { LoginDialog } from "./login/LoginDialog";
 import { DataContext } from "./context/DataProvider";
+import { Profile } from "./Profile";
 
 export const Nav = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -16,10 +17,7 @@ export const Nav = () => {
   const closeDialog = () => {
     setIsDialogOpen(false);
   };
-  // const openLoginPage = () => {
-  //   console.log("Login button clicked");
-  //   openDialog();
-  // };
+
   return (
     <>
       <nav className="bg-blue-300 px-4 py-2 flex items-center justify-between flex-wrap">
@@ -39,18 +37,14 @@ export const Nav = () => {
             placeholder="Search for products, brands, and more"
             className="w-full md:w-4/5 px-4 py-2 rounded-md text-sm focus:outline-none"
           />
-          
         </div>
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-4 sm:space-x-8 md:space-x-16">
           {acc ? (
-            <h1 className="text-lg font-semibold text-white px-4 py-2 bg-blue-600 rounded-lg shadow-md">
-              {acc}
-            </h1>
+            <Profile acc={acc}/>
           ) : (
             <>
-              
               <LoginDropdown openDialog={openDialog} />
             </>
           )}
