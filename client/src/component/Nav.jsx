@@ -8,7 +8,7 @@ import { Profile } from "./Profile";
 
 export const Nav = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const { acc } = useContext(DataContext);
+  const { acc,setAcc} = useContext(DataContext);
 
   const openDialog = () => {
     setIsDialogOpen(true);
@@ -42,7 +42,7 @@ export const Nav = () => {
         {/* Navigation Links */}
         <div className="flex items-center space-x-4 sm:space-x-8 md:space-x-16">
           {acc ? (
-            <Profile acc={acc}/>
+            <Profile acc={acc} setAcc={setAcc}/>
           ) : (
             <>
               <LoginDropdown openDialog={openDialog} />
