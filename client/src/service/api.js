@@ -10,3 +10,13 @@ export const authenticateSignup = async (data) => {
     console.log(error.message);
   }
 };
+export const authenticatelogin = async (data) => {
+  try {
+    console.log("succesfully");
+    return await axios.post(`${URL}/login`, data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+

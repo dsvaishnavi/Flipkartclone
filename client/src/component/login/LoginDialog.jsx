@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { authenticateSignup } from "../../service/api";
+import { authenticateSignup, authenticatelogin } from "../../service/api";
 import { DataContext } from "../context/DataProvider";
 
 const logininitialvalue = {
@@ -17,22 +17,21 @@ const logininitialvalue = {
 };
 
 const initialValue = {
-  fullname: "",
+  firstname: "",
   email: "",
   username: "",
   mobile: "",
   password: "",
 };
-const logininitial={
-  username: ""
-}
-
+const logininitial = {
+  username: "",
+};
 
 export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
   const [account, setAccount] = useState(logininitialvalue.login);
   const [signup, setsignup] = useState(initialValue);
-  const { setAcc } = useContext(DataContext);
-  const [login ,setlogin]= useState(logininitial);
+  const { acc, setAcc } = useContext(DataContext);
+  const [login, setlogin] = useState(logininitial);
 
   const handlesignup = () => {
     setAccount(logininitialvalue.signup);
@@ -75,12 +74,17 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
     }
   };
 
-  const onValuechange=(e)=>{
-    setlogin({...login,[e.target.name]:e.target.value})
-  }
+  const onValuechange = (e) => {
+    setlogin({ ...login, [e.target.name]: e.target.value });
+  };
 
-
-
+  const loginuser = async () => {
+    let response = await authenticatelogin(login);
+    if (response && response.status === 200) {
+      closeDialog();
+      setAcc(response.data.firstname);
+    }
+  };
 
   return (
     <>
@@ -109,8 +113,9 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   <div className="mb-4">
                     <input
                       type="text"
-                      id="username" onChange={(e)=>onValuechange(e)} 
-                      name="username"
+                      id="username"
+                      onChange={(e) => onValuechange(e)}
+                      name="firtname"
                       placeholder="Enter UserName/Mobile number"
                       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
@@ -123,7 +128,8 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
 
                   <button
                     type="submit"
-                    className="w-full mt-4 bg-orange-500 text-white py-2 mb-3" onClick={()=>loginuser()}
+                    className="w-full mt-4 bg-orange-500 text-white py-2 mb-3"
+                    onClick={() => loginuser()}
                   >
                     Login
                   </button>

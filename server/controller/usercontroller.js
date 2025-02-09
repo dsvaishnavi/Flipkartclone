@@ -6,7 +6,7 @@ export const signupUser = async (req, res) => {
   try {
     // Check if the user already exists
     const existingUser = await User.findOne({ email });
-    
+
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -20,5 +20,20 @@ export const signupUser = async (req, res) => {
     res
       .status(500)
       .json({ message: "Error during signup", error: error.message });
+  }
+};
+
+export const userLogin = async (req, res) => {
+  try {
+    const username = req.body.username;
+
+    let user = await User.findOne({ username: username });
+    if (user) {
+      res.status(200).json({ data: user });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.log(error.message);
   }
 };
