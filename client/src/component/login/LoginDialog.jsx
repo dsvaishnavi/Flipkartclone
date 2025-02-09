@@ -23,18 +23,23 @@ const initialValue = {
   mobile: "",
   password: "",
 };
+const logininitial={
+  username: ""
+}
+
 
 export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
   const [account, setAccount] = useState(logininitialvalue.login);
   const [signup, setsignup] = useState(initialValue);
   const { setAcc } = useContext(DataContext);
+  const [login ,setlogin]= useState(logininitial);
 
   const handlesignup = () => {
     setAccount(logininitialvalue.signup);
   };
 
   const handleLogin = () => {
-    setAccount(logininitialvalue.login);
+    setAccount(logininitial.login);
   };
 
   const onInputchange = (event) => {
@@ -70,6 +75,13 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
     }
   };
 
+  const onValuechange=(e)=>{
+    setlogin({...login,[e.target.name]:e.target.value})
+  }
+
+
+
+
   return (
     <>
       {/* Dialog */}
@@ -97,9 +109,9 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
                   <div className="mb-4">
                     <input
                       type="text"
-                      id="username"
+                      id="username" onChange={(e)=>onValuechange(e)} 
                       name="username"
-                      placeholder="Enter Email/Mobile number"
+                      placeholder="Enter UserName/Mobile number"
                       className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
@@ -111,9 +123,9 @@ export const LoginDialog = ({ closeDialog, isDialogOpen }) => {
 
                   <button
                     type="submit"
-                    className="w-full mt-4 bg-orange-500 text-white py-2 mb-3"
+                    className="w-full mt-4 bg-orange-500 text-white py-2 mb-3" onClick={()=>loginuser()}
                   >
-                    Request OTP
+                    Login
                   </button>
                   <span
                     onClick={closeDialog}
